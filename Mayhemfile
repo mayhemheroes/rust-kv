@@ -1,0 +1,6 @@
+project: rust-kv
+target: rustkv-fuzz
+
+cmds:
+    - cmd: ./rustkv-fuzz
+      libfuzzer: true
