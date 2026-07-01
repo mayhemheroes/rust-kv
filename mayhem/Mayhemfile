@@ -1,0 +1,8 @@
+# Mayhem target for rust-kv. libFuzzer binary built by mayhem/build.sh from the
+# additive mayhem/fuzz/ cargo-fuzz crate. Preserves the original target name.
+project: rust-kv
+target: rustkv-fuzz
+
+cmds:
+  - cmd: /mayhem/rustkv-fuzz
+    libfuzzer: true

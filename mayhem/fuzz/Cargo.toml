@@ -1,0 +1,29 @@
+# Additive Mayhem cargo-fuzz crate (libfuzzer-sys). Leaves upstream fuzz/ untouched.
+# Mirrors the upstream fuzz/fuzz_targets/rustkv-fuzz.rs harness but writes the sled
+# database under /tmp (Mayhem mounts the image read-only during coverage collection,
+# so the original harness's ./test/fuzzdb path would abort every input → 0 edges).
+# Preserves the original target name (rustkv-fuzz).
+[package]
+name = "kv-mayhem-fuzz"
+version = "0.0.0"
+authors = ["Automatically generated"]
+publish = false
+edition = "2021"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+
+[dependencies.kv]
+path = "../.."
+
+# Prevent this crate from being pulled into the workspace at the repo root.
+[workspace]
+
+[[bin]]
+name = "rustkv-fuzz"
+path = "fuzz_targets/rustkv-fuzz.rs"
+test = false
+doc = false
